@@ -2292,6 +2292,11 @@ anymatch@^3.0.3:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+arg@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/arg/-/arg-4.1.0.tgz#583c518199419e0037abb74062c37f8519e575f0"
+  integrity sha512-ZWc51jO3qegGkVh8Hwpv636EkbesNV5ZNQPCtRa+0qytRYPEs9IYT9qITY9buezqUH5uqyzlWLcufrzU2rffdg==
+
 arg@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/arg/-/arg-5.0.2.tgz#c81433cc427c92c4dcf4865142dbca6f15acd59c"
@@ -3529,6 +3534,11 @@ expo-dev-menu@55.0.4:
   dependencies:
     expo-dev-menu-interface "55.0.1"
 
+expo-eas-client@~55.0.2:
+  version "55.0.2"
+  resolved "https://registry.yarnpkg.com/expo-eas-client/-/expo-eas-client-55.0.2.tgz#d06f721e9dd09e38b2823e308cd0b7cde33b4cb6"
+  integrity sha512-fjOgSXaZFBK2Xmzn/uw0DTF3BsYv97JEa4PYXXqVCEvNJPwJB1cV1eX6Xyq6iKGIhMPH9k62sOc+oUdt094WCw==
+
 expo-file-system@~55.0.4:
   version "55.0.4"
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-55.0.4.tgz#c03e1831d94a90d7c8d2b896c2d7584d968ab370"
@@ -3647,6 +3657,11 @@ expo-status-bar@~55.0.2:
   dependencies:
     react-native-is-edge-to-edge "^1.2.1"
 
+expo-structured-headers@~55.0.0:
+  version "55.0.0"
+  resolved "https://registry.yarnpkg.com/expo-structured-headers/-/expo-structured-headers-55.0.0.tgz#38270c80caedeaf930de495c172e1c87ba16b54f"
+  integrity sha512-udaNvuWb45/Sryq9FLC/blwgOChhznuqlTrUzVjC0T83pMdcmscKJX23lnNDW6hCec8p81Y3z1DIFwIyk0g/PQ==
+
 expo-symbols@^55.0.3, expo-symbols@~55.0.3:
   version "55.0.3"
   resolved "https://registry.yarnpkg.com/expo-symbols/-/expo-symbols-55.0.3.tgz#093ff883a9db734944476cae6be75179b82f9d54"
@@ -3667,6 +3682,26 @@ expo-updates-interface@~55.1.1:
   version "55.1.1"
   resolved "https://registry.yarnpkg.com/expo-updates-interface/-/expo-updates-interface-55.1.1.tgz#4b67c677dc2db62c8e6a1b72172ef900e3d2054f"
   integrity sha512-++rlh9dNRUgm+uqN+x4vB/8ELidt0gc3kbwec55YzRizdD845kn5ufjTcGpkGs9SbAYHsP0eh8axlKHpY/v7Kg==
+
+expo-updates@~55.0.6:
+  version "55.0.6"
+  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-55.0.6.tgz#2565e3bd9a046e311c3392c7e7babedae2eb1687"
+  integrity sha512-ykCzafGoFNHIJGXv59HxfDSVt/lVgE1RsRzmLfZbDCq2bapMZi1eUdprKhhrJVTkXPq92xDESx4I+2LpVc4f4g==
+  dependencies:
+    "@expo/code-signing-certificates" "^0.0.6"
+    "@expo/plist" "^0.5.2"
+    "@expo/spawn-async" "^1.7.2"
+    arg "4.1.0"
+    chalk "^4.1.2"
+    debug "^4.3.4"
+    expo-eas-client "~55.0.2"
+    expo-manifests "~55.0.4"
+    expo-structured-headers "~55.0.0"
+    expo-updates-interface "~55.1.1"
+    getenv "^2.0.0"
+    glob "^13.0.0"
+    ignore "^5.3.1"
+    resolve-from "^5.0.0"
 
 expo-web-browser@~55.0.4:
   version "55.0.4"

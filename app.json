@@ -58,6 +58,19 @@
       "reactCompiler": true
     },
     "name": "SDK55Multiplatform",
-    "slug": "SDK55Multiplatform"
+    "slug": "SDK55Multiplatform",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c6ba8029-7076-4aee-bb5b-6e51be8a580c"
+      }
+    },
+    "owner": "douglowderexpo",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c6ba8029-7076-4aee-bb5b-6e51be8a580c"
+    }
   }
 }

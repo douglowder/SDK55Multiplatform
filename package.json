@@ -30,6 +30,7 @@
     "expo-status-bar": "~55.0.2",
     "expo-symbols": "~55.0.3",
     "expo-system-ui": "~55.0.4",
+    "expo-updates": "~55.0.6",
     "expo-web-browser": "~55.0.4",
     "patch-package": "^8.0.1",
     "postinstall-postinstall": "^2.1.0",
