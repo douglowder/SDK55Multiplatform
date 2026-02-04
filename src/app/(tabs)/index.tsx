@@ -16,6 +16,7 @@ export default function HomeScreen() {
         <ThemedView style={{ flex: 1 }} />
         <ThemedView style={styles.heroSection}>
           <AnimatedIcon />
+          <ThemedView style={{ flex: 1 }} />
           <ThemedText type="title" style={styles.title}>
             Welcome to&nbsp;Expo
           </ThemedText>
