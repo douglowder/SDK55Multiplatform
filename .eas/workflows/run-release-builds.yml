@@ -1,0 +1,43 @@
+name: Run builds
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build_apple_dev:
+    name: Apple mobile build (development)
+    type: build
+    params:
+      platform: ios
+      profile: development
+  build_apple_dev_tv:
+    name: Apple TV build (development)
+    type: build
+    params:
+      platform: ios
+      profile: development_tv
+  build_android_dev_tv:
+    name: Android TV build (development)
+    type: build
+    params:
+      platform: android
+      profile: development_tv
+  build_apple_preview:
+    name: Apple mobile build (preview)
+    type: build
+    params:
+      platform: ios
+      profile: preview
+  build_apple_preview_tv:
+    name: Apple TV build (preview)
+    type: build
+    params:
+      platform: ios
+      profile: preview_tv
+  build_android_preview_tv:
+    name: Android TV build (preview)
+    type: build
+    params:
+      platform: android
+      profile: preview_tv
