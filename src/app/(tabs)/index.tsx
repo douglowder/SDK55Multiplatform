@@ -1,0 +1,79 @@
+import { StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { AnimatedIcon } from '@/components/animated-icon';
+import { HintRow } from '@/components/hint-row';
+import { ThemedText } from '@/components/themed-text';
+import { ThemedView } from '@/components/themed-view';
+import { WebBadge } from '@/components/web-badge';
+import { useScreenDimensions } from '@/hooks/use-screen-dimensions';
+
+export default function HomeScreen() {
+  const styles = useHomeStyles();
+  return (
+    <ThemedView style={styles.container}>
+      <SafeAreaView style={styles.safeArea}>
+        <ThemedView style={{ flex: 1 }} />
+        <ThemedView style={styles.heroSection}>
+          <AnimatedIcon />
+          <ThemedText type="title" style={styles.title}>
+            Welcome to&nbsp;Expo
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedText type="code" style={styles.code}>
+          get started
+        </ThemedText>
+
+        <ThemedView type="backgroundElement" style={styles.stepContainer}>
+          <HintRow title="Try editing" hint="src/app/(tabs)/index.tsx" />
+          <HintRow title="Dev tools" hint="cmd+d" />
+          <HintRow title="Fresh start" hint="npm reset project" />
+        </ThemedView>
+
+        <WebBadge />
+        <ThemedView style={{ flex: 1 }} />
+      </SafeAreaView>
+    </ThemedView>
+  );
+}
+
+const useHomeStyles = () => {
+  const { spacing, width, landscape } = useScreenDimensions();
+
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      flexDirection: 'row',
+      width,
+    },
+    safeArea: {
+      paddingHorizontal: spacing.four,
+      alignItems: 'center',
+      gap: spacing.three,
+      maxWidth: width * 0.8,
+    },
+    heroSection: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1,
+      paddingHorizontal: spacing.four,
+      gap: landscape ? spacing.one : spacing.four,
+      marginBottom: landscape ? spacing.four : spacing.six,
+    },
+    title: {
+      textAlign: 'center',
+    },
+    code: {
+      textTransform: 'uppercase',
+    },
+    stepContainer: {
+      gap: spacing.three,
+      alignSelf: 'stretch',
+      paddingHorizontal: spacing.three,
+      paddingVertical: spacing.four,
+      borderRadius: spacing.four,
+    },
+  });
+};
