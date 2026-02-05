@@ -13,13 +13,13 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={{ flex: 1 }} />
         <ThemedView style={styles.heroSection}>
           <AnimatedIcon />
-          <ThemedView style={{ flex: 1 }} />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
+          <ThemedView style={styles.titleContainer}>
+            <ThemedText type="title" style={styles.title}>
+              Welcome to&nbsp;Expo
+            </ThemedText>
+          </ThemedView>
         </ThemedView>
 
         <ThemedText type="code" style={styles.code}>
@@ -33,7 +33,6 @@ export default function HomeScreen() {
         </ThemedView>
 
         <WebBadge />
-        <ThemedView style={{ flex: 1 }} />
       </SafeAreaView>
     </ThemedView>
   );
@@ -46,12 +45,15 @@ const useHomeStyles = () => {
     container: {
       flex: 1,
       justifyContent: 'center',
-      flexDirection: 'row',
+      alignItems: 'center',
       width,
     },
     safeArea: {
+      marginTop: landscape ? spacing.six : 0,
+      marginBottom: landscape ? spacing.two : spacing.six,
       paddingHorizontal: spacing.four,
       alignItems: 'center',
+      justifyContent: 'flex-end',
       gap: spacing.three,
       maxWidth: width * 0.8,
     },
@@ -63,10 +65,14 @@ const useHomeStyles = () => {
       gap: landscape ? spacing.one : spacing.four,
       marginBottom: landscape ? spacing.four : spacing.six,
     },
+    titleContainer: {
+      marginTop: landscape ? spacing.two : 0,
+    },
     title: {
       textAlign: 'center',
     },
     code: {
+      lineHeight: spacing.four,
       textTransform: 'uppercase',
     },
     stepContainer: {

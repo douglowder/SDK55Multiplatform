@@ -9,7 +9,8 @@ export function useScreenDimensions(): ScreenDimensionsResult {
     width,
     height,
     scale,
-    orientation: width > height ? 'landscape' : 'portrait',
+    landscape: width > height,
     spacing: Spacing,
   };
 }
+
