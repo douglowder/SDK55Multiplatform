@@ -1,13 +1,14 @@
 import * as Linking from 'expo-linking';
 import type { Href } from 'expo-router';
 import { Link } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 import { type ComponentProps } from 'react';
 import { Platform, Pressable } from 'react-native';
 
 const openBrowserAsync =
   Platform.isTV && Platform.OS === 'ios'
     ? async () => {}
-    : require('expo-web-browser').openBrowserAsync;
+    : WebBrowser.openBrowserAsync;
 
 type Props = Omit<ComponentProps<typeof Link>, 'href'> & {
   href: string;

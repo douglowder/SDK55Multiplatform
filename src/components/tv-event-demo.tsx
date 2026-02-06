@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   TouchableNativeFeedback,
   TouchableOpacity,
+  useTVEventHandler as useTVEventHandlerRN,
   View,
 } from 'react-native';
 
@@ -15,7 +16,7 @@ import { useScreenDimensions } from '@/hooks/use-screen-dimensions';
 import { useTheme } from '@/hooks/use-theme';
 
 const useTVEventHandler = Platform.isTV
-  ? require('react-native').useTVEventHandler
+  ? useTVEventHandlerRN
   : (_: any) => {};
 
 /**

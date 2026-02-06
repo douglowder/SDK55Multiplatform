@@ -1,30 +1,31 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { expoVersion, rnVersion } from '@/constants/react-native-info';
-import { useScreenDimensions } from '@/hooks/use-screen-dimensions';
 import { useTheme } from '@/hooks/use-theme';
 
 function PackageInfo({ name, version }: { name: string; version: string }) {
-  const styles = useAboutStyles();
   return (
-    <ThemedView style={styles.packageInfo}>
+    <ThemedView className="about-package-info">
       <ThemedText type="small">{name}</ThemedText>
-      <ThemedView style={{ flex: 1 }} />
+      <View style={styles.flex} />
       <ThemedText type="smallBold">{version}</ThemedText>
     </ThemedView>
   );
 }
 
 export default function AboutScreen() {
-  const styles = useAboutStyles();
   const router = useRouter();
+  const theme = useTheme();
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView
+      type="backgroundElement"
+      className="about-container"
+    >
       <ThemedText type="subtitle">About</ThemedText>
       <ThemedText>This is a demo Expo Router app with TV support.</ThemedText>
       <PackageInfo name="Expo" version={expoVersion} />
@@ -45,15 +46,13 @@ export default function AboutScreen() {
       >
         {({ focused, hovered, pressed }) => (
           <ThemedView
-            style={[
-              styles.dismissButton,
-              pressed || focused || hovered ? styles.pressed : null,
-            ]}
+            className="about-dismiss-button"
+            style={(pressed || focused || hovered) && { backgroundColor: theme.tint }}
           >
             <ThemedText
               type="link"
               style={
-                (focused || pressed || hovered) && styles.dismissTextFocused
+                (focused || pressed || hovered) && { color: theme.background }
               }
             >
               Dismiss
@@ -65,40 +64,8 @@ export default function AboutScreen() {
   );
 }
 
-const useAboutStyles = () => {
-  const { spacing } = useScreenDimensions();
-  const theme = useTheme();
-  return StyleSheet.create({
-    container: {
-      width: '100%',
-      flex: 1,
-      padding: spacing.four,
-      gap: spacing.three,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: theme.backgroundElement,
-    },
-    pressed: {
-      backgroundColor: theme.tint,
-    },
-    packageInfo: {
-      width: '40%',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'baseline',
-      gap: spacing.three,
-      backgroundColor: theme.backgroundElement,
-    },
-    dismissButton: {
-      flexDirection: 'row',
-      paddingHorizontal: spacing.four,
-      paddingVertical: spacing.two,
-      borderRadius: spacing.five,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    dismissTextFocused: {
-      color: theme.background,
-    },
-  });
-};
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+});

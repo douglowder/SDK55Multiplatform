@@ -9,18 +9,15 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Collapsible } from '@/components/ui/collapsible';
 import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset } from '@/constants/theme';
-import { useScreenDimensions } from '@/hooks/use-screen-dimensions';
+import { BottomTabInset, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 export default function TabTwoScreen() {
   const safeAreaInsets = useSafeAreaInsets();
   const theme = useTheme();
-  const styles = useExploreStyles();
-  const { scale, spacing, landscape } = useScreenDimensions();
   const insets = {
     ...safeAreaInsets,
-    bottom: safeAreaInsets.bottom + BottomTabInset * scale + spacing.three,
+    bottom: safeAreaInsets.bottom + BottomTabInset + Spacing.three,
   };
 
   const contentPlatformStyle = Platform.select({
@@ -31,28 +28,29 @@ export default function TabTwoScreen() {
       paddingBottom: insets.bottom,
     },
     web: {
-      paddingTop: spacing.six,
-      paddingBottom: spacing.four,
+      paddingTop: Spacing.six,
+      paddingBottom: Spacing.four,
     },
   });
 
   return (
     <ScrollView
-      style={[styles.scrollView, { backgroundColor: theme.background }]}
-      contentInset={landscape ? undefined : insets}
+      className="explore-scroll"
+      style={{ backgroundColor: theme.background }}
+      contentInset={insets}
       contentContainerStyle={[styles.contentContainer, contentPlatformStyle]}
     >
-      <ThemedView style={styles.container}>
-        <ThemedView style={styles.titleContainer}>
+      <ThemedView className="explore-container">
+        <ThemedView className="explore-title-container">
           <ThemedText type="subtitle">Explore</ThemedText>
-          <ThemedText style={styles.centerText} themeColor="textSecondary">
+          <ThemedText className="explore-center-text" themeColor="textSecondary">
             This starter app includes example{'\n'}code to help you get started.
           </ThemedText>
 
           {Platform.isTV || Platform.OS === 'web' ? null : (
             <ExternalLink href="https://docs.expo.dev" asChild>
               <Pressable style={({ pressed }) => pressed && styles.pressed}>
-                <ThemedView type="backgroundElement" style={styles.linkButton}>
+                <ThemedView type="backgroundElement" className="explore-link-button">
                   <ThemedText type="link">Expo documentation</ThemedText>
                   <SymbolView
                     tintColor={theme.text}
@@ -61,7 +59,7 @@ export default function TabTwoScreen() {
                       android: 'link',
                       web: 'link',
                     }}
-                    size={12 * scale}
+                    size={12}
                   />
                 </ThemedView>
               </Pressable>
@@ -69,8 +67,8 @@ export default function TabTwoScreen() {
           )}
         </ThemedView>
 
-        <ThemedView style={styles.outerSectionsWrapper}>
-          <ThemedView style={styles.sectionsWrapper}>
+        <ThemedView className="explore-outer-sections-wrapper">
+          <ThemedView className="explore-sections-wrapper">
             <Collapsible title="File-based routing">
               <ThemedText type="small">
                 This app has two screens:{' '}
@@ -90,7 +88,7 @@ export default function TabTwoScreen() {
             <Collapsible title="Android, iOS, and web support">
               <ThemedView
                 type="backgroundElement"
-                style={styles.collapsibleContent}
+                className="explore-collapsible-content"
               >
                 <ThemedText type="small">
                   You can open this project on Android, iOS, and the web. To
@@ -100,7 +98,7 @@ export default function TabTwoScreen() {
                 </ThemedText>
                 <Image
                   source={require('@/assets/images/tutorial-web.png')}
-                  style={styles.imageTutorial}
+                  className="explore-image-tutorial"
                 />
               </ThemedView>
             </Collapsible>
@@ -114,14 +112,14 @@ export default function TabTwoScreen() {
               </ThemedText>
               <Image
                 source={require('@/assets/images/react-logo.png')}
-                style={styles.imageReact}
+                className="explore-image-react"
               />
               <ExternalLink href="https://reactnative.dev/docs/images">
                 <ThemedText type="linkPrimary">Learn more</ThemedText>
               </ExternalLink>
             </Collapsible>
           </ThemedView>
-          <ThemedView style={styles.sectionsWrapper}>
+          <ThemedView className="explore-sections-wrapper">
             <Collapsible title="Light and dark mode components">
               <ThemedText type="small">
                 This template has light and dark mode support. The{' '}
@@ -153,66 +151,13 @@ export default function TabTwoScreen() {
   );
 }
 
-const useExploreStyles = () => {
-  const { spacing, scale, width, landscape } = useScreenDimensions();
-  return StyleSheet.create({
-    scrollView: {
-      flex: 1,
-    },
-    contentContainer: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      width,
-    },
-    container: {
-      maxWidth: width * 0.8,
-      flexGrow: 1,
-    },
-    titleContainer: {
-      gap: spacing.three,
-      alignItems: 'center',
-      paddingHorizontal: spacing.four,
-      paddingVertical: spacing.six,
-    },
-    centerText: {
-      textAlign: 'center',
-    },
-    pressed: {
-      opacity: 0.7,
-    },
-    linkButton: {
-      flexDirection: 'row',
-      paddingHorizontal: spacing.four,
-      paddingVertical: spacing.two,
-      borderRadius: spacing.five,
-      justifyContent: 'center',
-      gap: spacing.one,
-      alignItems: 'center',
-    },
-    outerSectionsWrapper: {
-      flexDirection: landscape ? 'row' : 'column',
-      width: '100%',
-    },
-    sectionsWrapper: {
-      width: landscape ? '50%' : '100%',
-      gap: spacing.five,
-      paddingHorizontal: spacing.four,
-      paddingTop: spacing.three,
-      paddingBottom: spacing.three,
-    },
-    collapsibleContent: {
-      alignItems: 'center',
-    },
-    imageTutorial: {
-      width: '100%',
-      aspectRatio: 296 / 171,
-      borderRadius: spacing.three,
-      marginTop: spacing.two,
-    },
-    imageReact: {
-      width: 100 * scale,
-      height: 100 * scale,
-      alignSelf: 'center',
-    },
-  });
-};
+const styles = StyleSheet.create({
+  contentContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  pressed: {
+    opacity: 0.7,
+  },
+});
