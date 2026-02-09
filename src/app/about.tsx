@@ -26,7 +26,7 @@ export default function AboutScreen() {
   return (
     <ThemedView style={styles.container}>
       <ThemedText type="subtitle">About</ThemedText>
-      <ThemedText>This is a demo Expo Router app with TV support.</ThemedText>
+      <ThemedText>This is a demo Expo Router app with adaptive layout for mobile, tablet, TV, and web.</ThemedText>
       <PackageInfo name="Expo" version={expoVersion} />
       <PackageInfo name="React Native TV" version={rnVersion} />
       <Pressable
