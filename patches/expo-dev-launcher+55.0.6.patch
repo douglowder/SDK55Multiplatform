@@ -1,0 +1,33 @@
+diff --git a/node_modules/expo-dev-launcher/ios/ReactDelegateHandler/ExpoDevLauncherReactDelegateHandler.swift b/node_modules/expo-dev-launcher/ios/ReactDelegateHandler/ExpoDevLauncherReactDelegateHandler.swift
+index dca659e..d1ed1ec 100644
+--- a/node_modules/expo-dev-launcher/ios/ReactDelegateHandler/ExpoDevLauncherReactDelegateHandler.swift
++++ b/node_modules/expo-dev-launcher/ios/ReactDelegateHandler/ExpoDevLauncherReactDelegateHandler.swift
+@@ -10,7 +10,7 @@ private class DevLauncherWrapperView: UIView {
+ 
+   #if os(iOS)
+   @objc
+-  func orientationDidChange() {
++  func frameDidChange() {
+     if let controller = devLauncherViewController {
+       setDevLauncherViewControllerConstraints(controller)
+     }
+@@ -32,11 +32,18 @@ private class DevLauncherWrapperView: UIView {
+   }
+ 
+ #if !os(macOS)
++  override var frame: CGRect {
++    didSet {
++      UIView.animate(withDuration: 1.0, animations: {
++        self.frameDidChange()
++      })
++    }
++  }
+   override func didMoveToWindow() {
+     super.didMoveToWindow()
+     #if os(iOS)
+     if window != nil {
+-      NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
++      NotificationCenter.default.addObserver(self, selector: #selector(frameDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
+     }
+     #endif
+ 
