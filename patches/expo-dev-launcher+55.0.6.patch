@@ -1,17 +1,24 @@
 diff --git a/node_modules/expo-dev-launcher/ios/ReactDelegateHandler/ExpoDevLauncherReactDelegateHandler.swift b/node_modules/expo-dev-launcher/ios/ReactDelegateHandler/ExpoDevLauncherReactDelegateHandler.swift
-index dca659e..d1ed1ec 100644
+index dca659e..e2e4c97 100644
 --- a/node_modules/expo-dev-launcher/ios/ReactDelegateHandler/ExpoDevLauncherReactDelegateHandler.swift
 +++ b/node_modules/expo-dev-launcher/ios/ReactDelegateHandler/ExpoDevLauncherReactDelegateHandler.swift
-@@ -10,7 +10,7 @@ private class DevLauncherWrapperView: UIView {
+@@ -8,14 +8,12 @@ private class DevLauncherWrapperView: UIView {
+   weak var devLauncherViewController: UIViewController?
+   private var devLauncherConstraints: [NSLayoutConstraint] = []
  
-   #if os(iOS)
+-  #if os(iOS)
    @objc
 -  func orientationDidChange() {
 +  func frameDidChange() {
      if let controller = devLauncherViewController {
        setDevLauncherViewControllerConstraints(controller)
      }
-@@ -32,11 +32,18 @@ private class DevLauncherWrapperView: UIView {
+   }
+-  #endif
+ 
+   func setDevLauncherViewControllerConstraints(_ viewController: UIViewController) {
+     viewController.view.translatesAutoresizingMaskIntoConstraints = false
+@@ -32,11 +30,18 @@ private class DevLauncherWrapperView: UIView {
    }
  
  #if !os(macOS)
